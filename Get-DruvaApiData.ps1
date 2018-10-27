@@ -3,8 +3,11 @@ param (
     [ValidateSet('User','Device','Last Backup', 'First Backup','Share Details','Restore Details', 'Cloud Storage Details', 'CloudCache Details','Inactive Devices')]
     [Parameter(Mandatory=$true)]
     [string]$ReportType,
+    [Parameter(Mandatory=$true)]
     [string]$ApiUserName,
+    [Parameter(Mandatory=$true)]
     [string]$ApiToken,
+    [Parameter(Mandatory=$true)]
     [string]$server
 )
 
