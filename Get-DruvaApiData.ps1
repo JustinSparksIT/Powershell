@@ -24,15 +24,14 @@ switch ( $Reporttype )
     'Inactive Devices'       { $report = 'inactivedevicesdetails' }
 }
 
-$credPair = $credPair = "$($ApiUserName):$($ApiToken)"
+$credPair = "$($ApiUserName):$($ApiToken)"
 $encodedCredentials = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes($credPair))
 $headers = @{ Authorization = "Basic $encodedCredentials" }
 $uri = "$server/api/reports/v2/$report"
 
 TRY {
-    $responseData = Invoke-RestMethod -Uri $uri  -Method Get -headers $headers -UseBasicParsing
-    $response = $responseData.data
-    return $response
+    $response = Invoke-RestMethod -Uri $uri  -Method Get -headers $headers -UseBasicParsing
+    return $response.data
 }
 CATCH {
     Write-Host $_.Exception.Message 
