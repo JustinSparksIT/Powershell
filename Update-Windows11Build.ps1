@@ -3,8 +3,23 @@ function Update-Windows11Build {
         [string]$targetBuild
     )
 
-    # Import the PSWindowsUpdate module
-    Import-Module PSWindowsUpdate
+    # Check if PSWindowsUpdate module is installed
+    if (-not (Get-Module -ListAvailable -Name PSWindowsUpdate)) {
+        Write-Output "PSWindowsUpdate module is not installed. Installing now..."
+        
+        # Install the PSWindowsUpdate module from the PowerShell Gallery
+        Install-Module -Name PSWindowsUpdate -Force -Scope CurrentUser
+        
+        # Import the module after installation
+        Import-Module PSWindowsUpdate
+        Write-Output "PSWindowsUpdate module installed and imported successfully."
+    } else {
+        Write-Output "PSWindowsUpdate module is already installed."
+        
+        # Import the module if it's already installed
+        Import-Module PSWindowsUpdate
+        Write-Output "PSWindowsUpdate module imported successfully."
+    }
 
     # Get the current Windows build number
     $buildNumber = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuild
