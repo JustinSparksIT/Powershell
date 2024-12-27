@@ -2,8 +2,6 @@ function Update-Windows11Build {
     param(
         [string]$targetBuild
     )
-
-    Set-ExecutionPolicy -ExecutionPolicy Bypass
     
     # Check if PSWindowsUpdate module is installed
     if (-not (Get-Module -ListAvailable -Name PSWindowsUpdate)) {
