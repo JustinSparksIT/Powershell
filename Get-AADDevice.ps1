@@ -1,5 +1,5 @@
 param(
-    [string]$TenantId,
+    [string]$tenantId,
     [string]$appId,
     [string]$appSecret
 )
